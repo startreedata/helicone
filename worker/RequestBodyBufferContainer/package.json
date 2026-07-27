@@ -18,7 +18,7 @@
     "@aws-crypto/sha256-js": "^5.2.0",
     "@smithy/protocol-http": "^4.1.7",
     "@smithy/signature-v4": "^4.2.3",
-    "fastify": "^4.28.1",
+    "fastify": "^5.10.0",
     "pino": "^9.5.0",
     "aws4fetch": "^1.0.18",
     "zod": "^3.23.8"
