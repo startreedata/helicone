@@ -28,7 +28,7 @@ sympy==1.13.1
 tokenizers==0.21.0
 tqdm==4.67.1
 torch>=2.6.0  # Security: CVE-2025-32434, CVE-2024-48063
-transformers==4.55.0  # Security: CVE-2025-2099
+transformers==5.10.1  # Security: CVE-2025-2099
 typing_extensions==4.12.2
 urllib3==2.5.0
 uvicorn==0.34.0
