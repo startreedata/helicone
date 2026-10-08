@@ -12,10 +12,13 @@ jobs:
     name: Jawn Client
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - name: Build US image
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v7
+        env:
+          DOCKER_BUILD_SUMMARY: "false"
+          DOCKER_BUILD_RECORD_UPLOAD: "false"
         with:
           context: ./
           file: ./valhalla/dockerfile

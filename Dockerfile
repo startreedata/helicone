@@ -59,9 +59,9 @@ RUN service postgresql start && \
 
 FROM database-stage AS jawn-stage
 
-# Install Node.js 20 and yarn
+# Install Node.js 22 and yarn
 RUN apt-get update && apt-get install -y curl \
-    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g yarn \
     && apt-get clean \
