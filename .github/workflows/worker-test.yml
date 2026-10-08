@@ -22,12 +22,12 @@ jobs:
     name: Worker AI Gateway Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # Cache node_modules using root yarn.lock (the real lockfile)
       - name: Cache dependencies
         id: cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             node_modules

@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:20.19
+FROM --platform=linux/amd64 node:24
 
 WORKDIR /app
 RUN apt update -y

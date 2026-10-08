@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           ref: "main"
 
@@ -72,7 +72,7 @@ jobs:
           git push origin ${TAG_NAME}
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-access-key-id: ${{ secrets.AWS_GITHUB_ACTIONS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_GITHUB_ACTIONS_SECRET_KEY }}
@@ -80,12 +80,12 @@ jobs:
 
       - name: Login to Amazon ECR (US)
         id: login-ecr-us
-        uses: aws-actions/amazon-ecr-login@v1
+        uses: aws-actions/amazon-ecr-login@v2
         with:
           registry-type: private
 
       - name: Configure AWS credentials (EU)
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-access-key-id: ${{ secrets.AWS_GITHUB_ACTIONS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_GITHUB_ACTIONS_SECRET_KEY }}
@@ -93,13 +93,16 @@ jobs:
 
       - name: Login to Amazon ECR (EU)
         id: login-ecr-eu
-        uses: aws-actions/amazon-ecr-login@v1
+        uses: aws-actions/amazon-ecr-login@v2
         with:
           registry-type: private
 
       - name: Build and push US image
         if: ${{ github.event.inputs.environment == 'all' || github.event.inputs.environment == 'us' }}
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v7
+        env:
+          DOCKER_BUILD_SUMMARY: "false"
+          DOCKER_BUILD_RECORD_UPLOAD: "false"
         with:
           context: ./
           file: ./valhalla/dockerfile
@@ -111,7 +114,10 @@ jobs:
 
       - name: Build and push EU image
         if: ${{ github.event.inputs.environment == 'all' || github.event.inputs.environment == 'eu' }}
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v7
+        env:
+          DOCKER_BUILD_SUMMARY: "false"
+          DOCKER_BUILD_RECORD_UPLOAD: "false"
         with:
           context: ./
           file: ./valhalla/dockerfile
@@ -130,7 +136,7 @@ jobs:
 
     steps:
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-access-key-id: ${{ secrets.AWS_GITHUB_ACTIONS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_GITHUB_ACTIONS_SECRET_KEY }}
@@ -155,7 +161,7 @@ jobs:
 
     steps:
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-access-key-id: ${{ secrets.AWS_GITHUB_ACTIONS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_GITHUB_ACTIONS_SECRET_KEY }}

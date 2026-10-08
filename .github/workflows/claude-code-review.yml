@@ -27,13 +27,13 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 1
 
       - name: Run Claude Code Review
         id: claude-review
-        uses: anthropics/claude-code-action@beta
+        uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
 
@@ -41,7 +41,7 @@ jobs:
           # model: "claude-opus-4-1-20250805"
 
           # Direct prompt for automated review (no @claude mention needed)
-          direct_prompt: |
+          prompt: |
             Review this PR and provide constructive feedback focusing on:
             - Critical bugs or security issues
             - Performance improvements and optimizations
@@ -71,22 +71,17 @@ jobs:
 
           # Enable sticky comments to update existing comments instead of creating new ones
           use_sticky_comment: true
-
-          # Enable inline suggestions for specific code improvements
-          review_mode: "inline"
+          track_progress: true
 
           # Optional: Different prompts for different authors
-          # direct_prompt: |
+          # prompt: |
           #   ${{ github.event.pull_request.author_association == 'FIRST_TIME_CONTRIBUTOR' &&
           #   'Welcome! Please review this PR from a first-time contributor. Be encouraging and provide detailed explanations for any suggestions.' ||
           #   'Please provide a thorough code review focusing on our coding standards and best practices.' }}
 
           # Optional: Add specific tools for running tests or linting
-          allowed_tools: "Bash(yarn build),Bash(yarn test),Bash(yarn lint)"
+          claude_args: >-
+            --allowedTools "Bash(yarn build),Bash(yarn test),Bash(yarn lint),mcp__github_inline_comment__create_inline_comment"
 
           # Optional: Allow specific bots to trigger this workflow
           allowed_bots: "greptile-apps,replicas-connector,claude"
-
-          # Optional: Skip review for certain conditions
-          if: |
-            !contains(github.event.pull_request.title, '[WIP]')

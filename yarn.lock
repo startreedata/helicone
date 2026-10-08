@@ -5417,13 +5417,13 @@
   dependencies:
     "@sentry/core" "8.55.0"
 
-"@sentry/profiling-node@^1.3.5":
-  version "1.3.5"
-  resolved "https://registry.npmjs.org/@sentry/profiling-node/-/profiling-node-1.3.5.tgz"
-  integrity sha512-n2bfEbtLW3WuIMQGyxKJKzBNZOb1JYfMeJQ2WQn/42F++69m+u7T0S3EDGRN0Y//fbt5+r0any+4r3kChRXZkQ==
+"@sentry/profiling-node@^7.120.4":
+  version "7.120.4"
+  resolved "https://registry.npmjs.org/@sentry/profiling-node/-/profiling-node-7.120.4.tgz#c28a91232b46deb1711364783f5154f0ee06f192"
+  integrity sha512-2Eb/LcYk7ohUx1KNnxcrN6hiyFTbD8Q9ffAvqtx09yJh1JhasvA+XCAcY72ONI5Aia4rCVkql9eEPSyhkmhsbA==
   dependencies:
     detect-libc "^2.0.2"
-    node-abi "^3.52.0"
+    node-abi "^3.61.0"
 
 "@sentry/react@8.55.0":
   version "8.55.0"
@@ -15525,7 +15525,7 @@ nlcst-to-string@^3.0.0:
   dependencies:
     "@types/nlcst" "^1.0.0"
 
-node-abi@^3.3.0, node-abi@^3.52.0:
+node-abi@^3.3.0, node-abi@^3.61.0:
   version "3.75.0"
   resolved "https://registry.npmjs.org/node-abi/-/node-abi-3.75.0.tgz"
   integrity sha512-OhYaY5sDsIka7H7AtijtI9jwGYLyl29eQn/W623DiN/MIv5sUqc4g7BIDThX+gb7di9f6xK02nkp8sdfFWZLTg==

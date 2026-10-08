@@ -25,12 +25,12 @@ jobs:
           echo "Tusk Run ID: ${{ github.event.inputs.runId }}"
           echo "Branch: ${{ github.ref }}"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.ref }}
 
 
-      - uses: dorny/paths-filter@v3
+      - uses: dorny/paths-filter@v4
         id: filter
         with:
           base: ${{ github.event.repository.default_branch }}
@@ -44,10 +44,10 @@ jobs:
             worker:
               - 'worker/**/*'
 
-      - name: Set Node.js v18
-        uses: actions/setup-node@v3
+      - name: Set Node.js v22
+        uses: actions/setup-node@v5
         with:
-          node-version: 18
+          node-version: 22
 
 
       - name: Install bifrsot dependencies
@@ -81,7 +81,7 @@ jobs:
         run: yarn lint-fix
         working-directory: ./worker
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "fix(${{ github.run_id }}): auto linting"
           skip_fetch: true
